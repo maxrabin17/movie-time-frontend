@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
 import NavBar from './components/NavBar';
 import Signup from './components/Signup';
-import Home from './components/Home';
+import HomePage from './components/HomePage';
 import Login from './components/Login.js';
 import Movies from './components/Movies';
 
@@ -73,7 +73,7 @@ const App = () => {
       </h3>
       <Switch>
         <Route exact path='/'>
-          <Home user={user} />
+          <HomePage user={user} />
         </Route>
         <Route exact path='/signup'>
           <Signup errors={errors} handleUserLoginAndSignup={handleUserLoginAndSignup} />
