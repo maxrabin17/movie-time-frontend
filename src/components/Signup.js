@@ -45,7 +45,7 @@ const Signup = ({handleUserLoginAndSignup, errors}) => {
                     <Form.Label>Password Confirmation</Form.Label>
                     <Form.Control name="password_confirmation" type="password" placeholder="Confirm Password" onChange={ handleChange }/>
                 </Form.Group>
-                <Button variant="outline-success" type="submit">
+                <Button variant="success" type="submit">
                     Sign Up
                 </Button>
             </Form>

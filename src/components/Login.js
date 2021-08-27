@@ -25,7 +25,7 @@ const Login = ({ errors, handleUserLoginAndSignup }) => {
         fetch('/login', config)
             .then(res => res.json())
             .then(data => handleUserLoginAndSignup(data))
-            errors ? history.push('/login') : history.push('/wishes')
+            errors ? history.push('/login') : history.push('/')
     }
 
     return (
@@ -40,7 +40,7 @@ const Login = ({ errors, handleUserLoginAndSignup }) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control name="password" type="password" placeholder="Enter Password" onChange={ handleChange }/>
                 </Form.Group>
-                <Button variant="outline-success" type="submit">
+                <Button variant="success" type="submit">
                     Log in
                 </Button>
             </Form>

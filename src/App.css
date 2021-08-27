@@ -12,3 +12,45 @@
   margin-top: 3%;
   text-align: center;
 }
+
+.movie-show {
+  overflow-x: hidden;
+}
+
+.movie-show > .row {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.movie-show > .row::-webkit-scrollbar {
+  display: none;
+}
+
+.App {
+  /* background-image: url("https://wallpaperaccess.com/full/752715.jpg"); */
+  color: white;
+  position: relative; 
+  height: 100vh;
+  width: 100%;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.App::before {    
+  content: "";
+  display: block;
+  background-image: url("https://wallpaperaccess.com/full/752715.jpg");
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.75;
+}
+
+.content {
+  position: relative;
+  opacity: 1;
+}
