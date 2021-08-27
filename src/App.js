@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import Signup from './components/Signup';
 import HomePage from './components/HomePage';
 import Login from './components/Login.js';
+import Logout from './components/Logout';
 import Movies from './components/Movies';
 
 const App = () => {
@@ -83,6 +84,9 @@ const App = () => {
         </Route>
         <Route exact path='/movies'>
           <Movies movies={ movies }/>
+        </Route>
+        <Route exact path = '/logout'>
+          <Logout user={user} setUser={setUser}/>
         </Route>
       </Switch>
     </div>

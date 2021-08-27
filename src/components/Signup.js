@@ -25,6 +25,7 @@ const Signup = ({handleUserLoginAndSignup, errors}) => {
         fetch('/users', config)
             .then(res => res.json())
             .then(data => handleUserLoginAndSignup(data))
+        
             !errors ? history.push('/') : history.push('/signup')
     }
 
