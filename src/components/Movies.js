@@ -1,12 +1,16 @@
 import React from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
+import AddWatchLater from './AddWatchLater';
 
-const Movies = ({movies}) => {
+const Movies = ({movies, watchLaterComp}) => {
     return (
             <>
                 {movies.map((movie, index) =>
-                <div className = "col m-3">
-                    <img src={movie.Poster} alt = ""></img>
+                <div className = "image-container col m-3">
+                        <img id = "image" src={movie.Poster} alt=""></img>
+                        <div className="hover-effect">
+                            <AddWatchLater />
+                        </div>
                 </div>)}
             </>
     )

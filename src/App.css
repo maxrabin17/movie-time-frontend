@@ -26,15 +26,16 @@
   display: none;
 }
 
+.text {
+  padding-right: 7px;
+}
+
 .App {
   /* background-image: url("https://wallpaperaccess.com/full/752715.jpg"); */
-  color: white;
+  color: rgb(255, 255, 255);
   position: relative; 
   height: 100vh;
   width: 100%;
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
 }
 
 .App::before {    
@@ -53,4 +54,39 @@
 .content {
   position: relative;
   opacity: 1;
+}
+
+#image {
+  width: 300px;
+  height: 400px;
+}
+
+.image-container {
+  /* width: 100%; */
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.image-container:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.image-container:hover .hover-effect {
+  opacity: 1;
+}
+
+.hover-effect {
+  position: absolute;
+  background: rgba(0,0,0,0.6);
+  width: 92.5%;
+  transition: 0.5s ease;
+  opacity: 0;
+  bottom: 0;
+  /* padding-bottom: 20px; */
+  /* top: 5; */
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  color: white;
 }

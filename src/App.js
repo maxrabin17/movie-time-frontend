@@ -9,6 +9,7 @@ import Login from './components/Login.js';
 import Logout from './components/Logout';
 import Movies from './components/Movies';
 import SearchBar from './components/SearchBar';
+import AddWatchLater from './components/AddWatchLater';
 
 const App = () => {
 
@@ -79,7 +80,7 @@ const App = () => {
                 <SearchBar searchValue={searchValue} setSearchValue={setSearchValue}/>
               </div>
               <div className='row'>
-                <Movies movies={movies} />
+                <Movies movies={movies} watchLaterComp={AddWatchLater}/>
               </div>
             </div>
           </Route>

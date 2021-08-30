@@ -35,11 +35,11 @@ const Signup = ({handleUserLoginAndSignup, errors}) => {
             <h1>Sign Up!</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Username</Form.Label>
-                    <Form.Control name="username" type="text" placeholder="Enter Username" onChange={ handleChange }/>
+                    <Form.Control name="username" type="text" placeholder="Create Username" onChange={ handleChange }/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control name="password" type="password" placeholder="Enter Password" onChange={ handleChange }/>
+                    <Form.Control name="password" type="password" placeholder="Create Password" onChange={ handleChange }/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password Confirmation</Form.Label>
