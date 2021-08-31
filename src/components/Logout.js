@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#fff'
     },
 }));
-const Logout = ({ setUser, setWishes }) => {
+const Logout = ({ setUser, setWatchLater }) => {
     
     const classes = useStyles()
     const history = useHistory()
@@ -22,7 +22,7 @@ const Logout = ({ setUser, setWishes }) => {
 
     const handleLogout = () => {
         setUser(null)
-        // setWishes([])
+        setWatchLater([])
         setTimeout(() => {
             history.push('/login')
         }, 2000)
