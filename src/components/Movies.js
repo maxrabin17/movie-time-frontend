@@ -2,10 +2,8 @@ import React from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import AddWatchLater from './AddWatchLater';
 
-const Movies = ({ movies, handleWatchLater, watchLaterComp }) => {
-    
-    // const WatchLaterComp = watchLaterComp
-    
+const Movies = ({ movies, handleWatchLater }) => {
+        
     return (
         <>
                 {movies.map((movie) =>

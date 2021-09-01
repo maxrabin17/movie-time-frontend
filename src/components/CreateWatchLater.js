@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import { Button, Form, Card } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import Errors from './Errors'
 
 
-const Login = ({ errors, handleUserLoginAndSignup }) => {
+const CreateWatchLater = ({ handleCreateWatchLater, errors, user }) => {
     const history = useHistory()
     const [form, setForm] = useState({})
     const handleChange = (e) => {
@@ -20,12 +20,12 @@ const Login = ({ errors, handleUserLoginAndSignup }) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify(form)
+            body: JSON.stringify({title: form.title, poster: form.poster, user_id: user.id})
         }
-        fetch('/login', config)
+        fetch('/watch_laters', config)
             .then(res => res.json())
-            .then(data => handleUserLoginAndSignup(data))
-        errors ? history.push('/login') : history.push('/')
+            .then(data => handleCreateWatchLater(data))
+        errors ? history.push('/movies/new') : history.push('/')
     }
 
     return (
@@ -36,20 +36,19 @@ const Login = ({ errors, handleUserLoginAndSignup }) => {
                 style={{ width: '18rem' }}
                 className="mb-2 form"
             >
-                {/* <Card.Header id="head">Log In</Card.Header> */}
-                <h1>Log In</h1>
                 <Card.Body>
                     <Form onSubmit={handleSubmit} className="form">
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control name="username" type="text" placeholder="Enter Username" onChange={handleChange} />
+                        <h1>Add a Movie!</h1>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Movie Name</Form.Label>
+                            <Form.Control name="title" type="text" placeholder="Enter Movie Name" onChange={handleChange} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control name="password" type="password" placeholder="Enter Password" onChange={handleChange} />
+                        <Form.Group className="mb-3">
+                            <Form.Label>Poster URL</Form.Label>
+                            <Form.Control name="poster" type="text" placeholder="Enter Poster URL" onChange={handleChange} />
                         </Form.Group>
                         <Button variant="success" type="submit">
-                            Log in
+                            Add Movie
                         </Button>
                     </Form>
                     <Errors errors={errors} />
@@ -59,4 +58,4 @@ const Login = ({ errors, handleUserLoginAndSignup }) => {
     )
 }
 
-export default Login
+export default CreateWatchLater

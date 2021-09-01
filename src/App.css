@@ -61,8 +61,17 @@
   height: 400px;
 }
 
+#head {
+  font-size: 50px;
+}
+
+#card {
+  /* text-decoration: none; */
+  color: black;
+}
+
 .image-container {
-  width: 100%;
+  /* width: 100%; */
   position: relative;
   transition: transform 0.2s;
 }
@@ -83,10 +92,13 @@
   transition: 0.5s ease;
   opacity: 0;
   bottom: 0;
-  /* padding-bottom: 20px; */
-  /* top: 5; */
   font-size: 20px;
   padding: 20px;
   text-align: center;
   color: white;
+}
+
+.watch_card {
+  color: black;
+  text-align: center;
 }

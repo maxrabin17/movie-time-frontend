@@ -19,6 +19,7 @@ const NavBar = ({ user }) => {
                                 <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
                                 <NavDropdown.Item href="/login">Login</NavDropdown.Item>
                                 <NavDropdown.Item href="/movies">Movie Search</NavDropdown.Item>
+                                <NavDropdown.Item href="/movies/new">Movie Add</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="/logout">Log Out</NavDropdown.Item>
                             </NavDropdown>

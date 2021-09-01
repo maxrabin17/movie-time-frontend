@@ -4,14 +4,12 @@ import { useState, useEffect } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
 import NavBar from './components/NavBar';
 import Signup from './components/Signup';
-import HomePage from './components/HomePage';
 import Login from './components/Login.js';
 import Logout from './components/Logout';
 import Movies from './components/Movies';
 import SearchBar from './components/SearchBar';
-import AddWatchLater from './components/AddWatchLater';
-import RemoveWatchLater from './components/RemoveWatchLater';
 import WatchLater from './components/WatchLater';
+import CreateWatchLater from './components/CreateWatchLater';
 
 const App = () => {
 
@@ -51,7 +49,6 @@ const App = () => {
   fetch('/watch_laters', config)
       .then(res => res.json())
       .then(data => setWatchLater([data, ...watchLater]))
-      // errors ? history.push('/login') : history.push('/wishes')
   }
 
   const fetchUserAndMovies = () => {
@@ -80,6 +77,14 @@ const App = () => {
     }
   }
 
+  const handleCreateWatchLater = (data) => {
+    data.errors ? setErrors(data.errors) : setWatchLater([...watchLater, data])
+    if (!data.errors) {
+      history.push('/') 
+        setErrors([])
+    }
+}
+
   return (
     <div className = "App">
       <NavBar user={user} />
@@ -89,10 +94,10 @@ const App = () => {
         </h3>
         <Switch>
           <Route exact path='/'>
-          <div className='container-fluid movie-show'>
+            <div className='container-fluid movie-show'>
               <h1 className="heading" >Watch Later</h1>
               <div className='row'>
-                <WatchLater movies={watchLater} handleWatchLater={addWatchLater} watchLaterComp={RemoveWatchLater} setWatchLater={ setWatchLater }/>
+                <WatchLater movies={watchLater} setWatchLater={ setWatchLater }/>
               </div>
             </div>
           </Route>
@@ -109,12 +114,15 @@ const App = () => {
                 <SearchBar searchValue={searchValue} setSearchValue={setSearchValue}/>
               </div>
               <div className='row'>
-                <Movies movies={movies} handleWatchLater={ addWatchLater } watchLaterComp={AddWatchLater}/>
+                <Movies movies={movies} handleWatchLater={ addWatchLater }/>
               </div>
             </div>
           </Route>
           <Route exact path = '/logout'>
             <Logout user={user} setUser={setUser} setWatchLater={ setWatchLater }/>
+          </Route>
+          <Route exact path = '/movies/new'>
+            <CreateWatchLater handleCreateWatchLater={handleCreateWatchLater} errors={errors} user={ user }/>
           </Route>
         </Switch>
       </div>
