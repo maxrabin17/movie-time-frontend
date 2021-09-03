@@ -20,7 +20,7 @@ const WatchLater = ({ movies, setWatchLater }) => {
         <>
             {movies.map((movie) =>
             <div className = "watch_card col m-3">
-                    <WatchLaterCard id={movie.id} movie={movie} handleRemoveWatchLater={handleRemoveWatchLater}/>
+                    <WatchLaterCard id={movie.id} movie={movie} movies={movies} handleRemoveWatchLater={handleRemoveWatchLater} setWatchLater={setWatchLater}/>
             </div>)}
         </>
     )
