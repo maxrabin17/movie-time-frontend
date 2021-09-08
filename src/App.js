@@ -2,6 +2,7 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { useState, useEffect } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
+import { Alert, Button, Popover, Card } from 'react-bootstrap'
 import NavBar from './components/NavBar';
 import Signup from './components/Signup';
 import Login from './components/Login.js';
@@ -16,9 +17,14 @@ const App = () => {
   const history = useHistory()
   const [errors, setErrors] = useState([])
   const [movies, setMovies] = useState([])
+  const [randomMovie, setRandomMovie] = useState(null)
   const [watchLater, setWatchLater] = useState([])
   const [searchValue, setSearchValue] = useState("")
   const [user, setUser] = useState(null)
+
+  // const filterMovies = () => {
+  //   setFilteredMovies(movies.filter(movie => { return movie.Poster !== "N/A" }))
+  // }
 
   const stateInit = () => {
     fetchUserAndMovies()
@@ -33,6 +39,11 @@ const App = () => {
   useEffect(() => {
     searchMovies(searchValue)
   }, [searchValue])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setFilteredMovies(filterMovies())
+  //   }, 1000)
+  // }, [])
 
   const addWatchLater = (movie) => {
     const newWatchLaterList = [...watchLater, movie]
@@ -41,12 +52,12 @@ const App = () => {
     const config = {
       method: 'POST',
       headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
-      body: JSON.stringify({title: movie.Title, poster: movie.Poster, user_id: user.id})
-  }
-  fetch('/watch_laters', config)
+      body: JSON.stringify({ title: movie.Title, poster: movie.Poster, user_id: user.id })
+    }
+    fetch('/watch_laters', config)
       .then(res => res.json())
       .then(data => setWatchLater([data, ...watchLater]))
   }
@@ -62,10 +73,13 @@ const App = () => {
 
     const response = await fetch(url)
     const responseJson = await response.json()
-    console.log(responseJson)
+
 
     if (responseJson.Search) {
-      setMovies(responseJson.Search)
+      const filterResp = responseJson.Search.filter(movie => {
+        return movie.Poster !== "N/A"
+      })
+      setMovies(filterResp)
     }
   }
 
@@ -80,13 +94,17 @@ const App = () => {
   const handleCreateWatchLater = (data) => {
     data.errors ? setErrors(data.errors) : setWatchLater([...watchLater, data])
     if (!data.errors) {
-      history.push('/') 
-        setErrors([])
+      history.push('/')
+      setErrors([])
     }
-}
+  }
+
+  const handleClick = () => {
+    setRandomMovie(watchLater[Math.floor(Math.random() * watchLater.length)])
+  }
 
   return (
-    <div className = "App">
+    <div className="App">
       <NavBar user={user} />
       <div className="content">
         <h3 id="logged-in">
@@ -96,37 +114,43 @@ const App = () => {
           <Route exact path='/'>
             <div className='container-fluid movie-show'>
               <h1 className="heading" >Watch Later</h1>
-              <div className='row'>
-                <WatchLater movies={watchLater} setWatchLater={ setWatchLater }/>
-              </div>
+              <div className="random">
+                <h1>Not sure what to watch?</h1>
+              <Button variant="dark" onClick={handleClick}>Click here for a Random Movie!</Button>
+              <br />
+              {randomMovie ? <Alert variant="success" id="rando">{`Try this movie: ${randomMovie.title}`}</Alert> : null}
+            </div>
+            <div className='row'>
+              <WatchLater movies={watchLater} setWatchLater={setWatchLater} />
+            </div>
             </div>
           </Route>
-          <Route exact path='/signup'>
-            <Signup errors={errors} handleUserLoginAndSignup={handleUserLoginAndSignup} />
-          </Route>
-          <Route exact path='/login'>
-            <Login errors={errors} handleUserLoginAndSignup={handleUserLoginAndSignup} />
-          </Route>
-          <Route exact path='/movies'>
-            <div className='container-fluid movie-show'>
-              <h1 className="heading" >Movie Search</h1>
-              <div className='row justify-content-center mt-4 mb-4'>
-                <SearchBar searchValue={searchValue} setSearchValue={setSearchValue}/>
-              </div>
-              <div className='row'>
-                <Movies movies={movies} handleWatchLater={ addWatchLater }/>
-              </div>
+        <Route exact path='/signup'>
+          <Signup errors={errors} handleUserLoginAndSignup={handleUserLoginAndSignup} />
+        </Route>
+        <Route exact path='/login'>
+          <Login errors={errors} handleUserLoginAndSignup={handleUserLoginAndSignup} />
+        </Route>
+        <Route exact path='/movies'>
+          <div className='container-fluid movie-show'>
+            <h1 className="heading" >Movie Search</h1>
+            <div className='row d-flex mt-4 mb-4'>
+              <SearchBar id="search" searchValue={searchValue} setSearchValue={setSearchValue} />
             </div>
-          </Route>
-          <Route exact path = '/logout'>
-            <Logout user={user} setUser={setUser} setWatchLater={ setWatchLater }/>
-          </Route>
-          <Route exact path = '/movies/new'>
-            <CreateWatchLater handleCreateWatchLater={handleCreateWatchLater} errors={errors} user={ user }/>
-          </Route>
+            <div className='row'>
+              <Movies movies={movies} handleWatchLater={addWatchLater} />
+            </div>
+          </div>
+        </Route>
+        <Route exact path='/logout'>
+          <Logout user={user} setUser={setUser} setWatchLater={setWatchLater} />
+        </Route>
+        <Route exact path='/movies/new'>
+          <CreateWatchLater handleCreateWatchLater={handleCreateWatchLater} errors={errors} user={user} />
+        </Route>
         </Switch>
-      </div>
     </div>
+    </div >
   );
 }
 

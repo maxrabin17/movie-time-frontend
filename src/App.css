@@ -34,7 +34,7 @@
   /* background-image: url("https://wallpaperaccess.com/full/752715.jpg"); */
   color: rgb(255, 255, 255);
   position: relative; 
-  height: 100vh;
+  height: 110vh;
   width: 100%;
 }
 
@@ -66,12 +66,10 @@
 }
 
 #card {
-  /* text-decoration: none; */
   color: black;
 }
 
 .image-container {
-  /* width: 100%; */
   position: relative;
   transition: transform 0.2s;
 }
@@ -101,5 +99,40 @@
 .watch_card {
   color: black;
   text-align: center;
-  /* border-color: black; */
+}
+
+.random {
+  text-align: center;
+}
+
+#rando {
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 10px;
+}
+
+#card {
+  color: black;
+  width: 50%;
+  margin-left: 30%;
+  height: 10%;
+}
+
+#logged-in {
+  margin-left: 10px;
+}
+
+.search {
+  width: 50%;
+  border-color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  border: none;
+}
+
+.search:focus {
+  background-color: black;
+  border-color: black;
+  border-radius: 4px;
+  color: white;
 }
