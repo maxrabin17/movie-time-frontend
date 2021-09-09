@@ -6,9 +6,9 @@ import NavBar from './components/NavBar';
 import Signup from './components/Signup';
 import Login from './components/Login.js';
 import Logout from './components/Logout';
-import CreateWatchLater from './components/CreateWatchLater';
+import CreateWatchLater from './components/watch_later/CreateWatchLater';
 import Home from './components/Home';
-import MovieSearch from './components/MovieSearch';
+import MovieSearch from './components/api_handle/MovieSearch';
 
 const App = () => {
 

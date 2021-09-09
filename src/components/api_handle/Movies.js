@@ -1,6 +1,6 @@
 import React from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
-import AddWatchLater from './AddWatchLater';
+import Overlay from '../Overlay';
 
 const Movies = ({ movies, handleWatchLater }) => {
 
@@ -13,7 +13,7 @@ const Movies = ({ movies, handleWatchLater }) => {
                             onClick={() => handleWatchLater(movie)}
                             className="hover-effect"
                         >
-                            <AddWatchLater />
+                            <Overlay />
                         </div>
                 </div>
             ))}

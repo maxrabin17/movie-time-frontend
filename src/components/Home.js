@@ -1,5 +1,5 @@
 import React from 'react'
-import WatchLater from './WatchLater'
+import WatchLater from './watch_later/WatchLater'
 import { Alert, Button } from 'react-bootstrap'
 
 

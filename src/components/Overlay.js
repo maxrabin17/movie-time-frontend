@@ -2,7 +2,7 @@ import React from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 
 
-const AddWatchLater = () => {
+const Overlay = () => {
     return (
         <>
             <span className="text">Add to Watch Later</span>
@@ -13,4 +13,4 @@ const AddWatchLater = () => {
     )
 }
 
-export default AddWatchLater
+export default Overlay

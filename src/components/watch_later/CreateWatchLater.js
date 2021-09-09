@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form, Card } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import Errors from './Errors'
+import Errors from '../Errors'
 
 
 const CreateWatchLater = ({ handleCreateWatchLater, errors, user }) => {
