@@ -4,10 +4,6 @@ import AddWatchLater from './AddWatchLater';
 
 const Movies = ({ movies, handleWatchLater }) => {
 
-//     const filteredMovies = () => {
-//     return movies.filter(movie => { return !movie.Poster === "N/A" })
-// }
-        
     return (
         <>
             {movies.map((movie) => (

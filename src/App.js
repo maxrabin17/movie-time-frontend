@@ -2,15 +2,13 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { useState, useEffect } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
-import { Alert, Button, Popover, Card } from 'react-bootstrap'
 import NavBar from './components/NavBar';
 import Signup from './components/Signup';
 import Login from './components/Login.js';
 import Logout from './components/Logout';
-import Movies from './components/Movies';
-import SearchBar from './components/SearchBar';
-import WatchLater from './components/WatchLater';
 import CreateWatchLater from './components/CreateWatchLater';
+import Home from './components/Home';
+import MovieSearch from './components/MovieSearch';
 
 const App = () => {
 
@@ -21,10 +19,6 @@ const App = () => {
   const [watchLater, setWatchLater] = useState([])
   const [searchValue, setSearchValue] = useState("")
   const [user, setUser] = useState(null)
-
-  // const filterMovies = () => {
-  //   setFilteredMovies(movies.filter(movie => { return movie.Poster !== "N/A" }))
-  // }
 
   const stateInit = () => {
     fetchUserAndMovies()
@@ -39,11 +33,6 @@ const App = () => {
   useEffect(() => {
     searchMovies(searchValue)
   }, [searchValue])
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setFilteredMovies(filterMovies())
-  //   }, 1000)
-  // }, [])
 
   const addWatchLater = (movie) => {
     const newWatchLaterList = [...watchLater, movie]
@@ -69,8 +58,7 @@ const App = () => {
   }
 
   const searchMovies = async (searchValue) => {
-    let url = `http://www.omdbapi.com/?s=${searchValue}&apikey=13a266fa`
-
+    let url = `/movie-search/${searchValue}`
     const response = await fetch(url)
     const responseJson = await response.json()
 
@@ -84,7 +72,7 @@ const App = () => {
   }
 
   const handleUserLoginAndSignup = (data) => {
-    data.errors ? setErrors(data.errors) : setUserAndMovies(data)// && setWishes(data.wishes)
+    data.errors ? setErrors(data.errors) : setUserAndMovies(data)
     if (!data.errors) {
       history.push('/')
       setErrors([])
@@ -99,10 +87,6 @@ const App = () => {
     }
   }
 
-  const handleClick = () => {
-    setRandomMovie(watchLater[Math.floor(Math.random() * watchLater.length)])
-  }
-
   return (
     <div className="App">
       <NavBar user={user} />
@@ -112,47 +96,27 @@ const App = () => {
         </h3>
         <Switch>
           <Route exact path='/'>
-            <div className='container-fluid movie-show'>
-              <h1 className="heading" >Watch Later</h1>
-              <div className="random">
-                <h1>Not sure what to watch?</h1>
-              <Button variant="dark" onClick={handleClick}>Click here for a Random Movie!</Button>
-              <br />
-              {randomMovie ? <Alert variant="success" id="rando">{`Try this movie: ${randomMovie.title}`}</Alert> : null}
-            </div>
-            <div className='row'>
-              <WatchLater movies={watchLater} setWatchLater={setWatchLater} />
-            </div>
-            </div>
+            <Home randomMovie={randomMovie} setRandomMovie={setRandomMovie} watchLater={watchLater} setWatchLater={setWatchLater} />
           </Route>
-        <Route exact path='/signup'>
-          <Signup errors={errors} handleUserLoginAndSignup={handleUserLoginAndSignup} />
-        </Route>
-        <Route exact path='/login'>
-          <Login errors={errors} handleUserLoginAndSignup={handleUserLoginAndSignup} />
-        </Route>
-        <Route exact path='/movies'>
-          <div className='container-fluid movie-show'>
-            <h1 className="heading" >Movie Search</h1>
-            <div className='row d-flex mt-4 mb-4'>
-              <SearchBar id="search" searchValue={searchValue} setSearchValue={setSearchValue} />
-            </div>
-            <div className='row'>
-              <Movies movies={movies} handleWatchLater={addWatchLater} />
-            </div>
-          </div>
-        </Route>
-        <Route exact path='/logout'>
-          <Logout user={user} setUser={setUser} setWatchLater={setWatchLater} />
-        </Route>
-        <Route exact path='/movies/new'>
-          <CreateWatchLater handleCreateWatchLater={handleCreateWatchLater} errors={errors} user={user} />
-        </Route>
+          <Route exact path='/signup'>
+            <Signup errors={errors} handleUserLoginAndSignup={handleUserLoginAndSignup} />
+          </Route>
+          <Route exact path='/login'>
+            <Login errors={errors} handleUserLoginAndSignup={handleUserLoginAndSignup} />
+          </Route>
+          <Route exact path='/movies'>
+            <MovieSearch searchValue={searchValue} setSearchValue={setSearchValue} movies={movies} addWatchLater={addWatchLater} />
+          </Route>
+          <Route exact path='/logout'>
+            <Logout user={user} setUser={setUser} setWatchLater={setWatchLater} />
+          </Route>
+          <Route exact path='/movies/new'>
+            <CreateWatchLater handleCreateWatchLater={handleCreateWatchLater} errors={errors} user={user} />
+          </Route>
         </Switch>
-    </div>
+      </div>
     </div >
   );
 }
 
 export default App;
-

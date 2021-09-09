@@ -3,7 +3,6 @@ import WatchLaterCard from './WatchLaterCard'
 
 const WatchLater = ({ movies, setWatchLater }) => {
 
-
     const handleRemoveWatchLater = (event) => {
         let config = {
             method: 'DELETE'

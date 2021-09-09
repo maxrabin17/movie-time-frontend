@@ -36,7 +36,6 @@ const Login = ({ errors, handleUserLoginAndSignup }) => {
                 style={{ width: '18rem' }}
                 className="mb-2 form"
             >
-                {/* <Card.Header id="head">Log In</Card.Header> */}
                 <h1>Log In</h1>
                 <Card.Body>
                     <Form onSubmit={handleSubmit} className="form">

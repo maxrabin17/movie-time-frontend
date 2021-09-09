@@ -56,18 +56,7 @@
   opacity: 1;
 }
 
-#image {
-  width: 300px;
-  height: 400px;
-}
 
-#head {
-  font-size: 50px;
-}
-
-#card {
-  color: black;
-}
 
 .image-container {
   position: relative;
@@ -105,23 +94,6 @@
   text-align: center;
 }
 
-#rando {
-  width: 40%;
-  margin-left: 30%;
-  margin-top: 10px;
-}
-
-#card {
-  color: black;
-  width: 50%;
-  margin-left: 30%;
-  height: 10%;
-}
-
-#logged-in {
-  margin-left: 10px;
-}
-
 .search {
   width: 50%;
   border-color: white;
@@ -135,4 +107,30 @@
   border-color: black;
   border-radius: 4px;
   color: white;
+}
+
+#image {
+  width: 300px;
+  height: 400px;
+}
+
+#head {
+  font-size: 50px;
+}
+
+#rando {
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 10px;
+
+}
+
+#card {
+  color: black;
+  width: 50%;
+  height: 10%;
+}
+
+#logged-in {
+  margin-left: 10px;
 }

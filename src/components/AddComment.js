@@ -21,7 +21,6 @@ const AddComment = ({setCardBody, setWatchLater, movie, movies}) => {
         }
         fetch(`/watch_laters/${movie.id}`, config)
         .then(resp => resp.json())
-        // .then(data => console.log(data))
         .then(data => setWatchLater(movies.map(singleMovie => singleMovie.id === movie.id ? data : singleMovie)))
         setCardBody(true)
     }
