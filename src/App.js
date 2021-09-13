@@ -20,6 +20,13 @@ const App = () => {
   const [searchValue, setSearchValue] = useState("")
   const [user, setUser] = useState(null)
 
+  // return the year that appears the most throughout the movies state
+  // 
+  // const filterYear = () => {
+  //   const arr = movies.map(movie => movie.Year)
+
+  // }
+
   const stateInit = () => {
     fetchUserAndMovies()
   }
@@ -48,7 +55,7 @@ const App = () => {
     }
     fetch('/watch_laters', config)
       .then(res => res.json())
-      .then(data => setWatchLater([data, ...watchLater]))
+      .then(data => console.log(data))
   }
 
   const fetchUserAndMovies = () => {
